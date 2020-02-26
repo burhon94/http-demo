@@ -2,12 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home Page</title>
     <link rel="stylesheet" type="text/css" href="./css/styles.css">
-    <script type="text/javascript" src="./js/script.js"></script>
+    <script src="./js/script.js"></script>
 </head>
 <body>
 
@@ -25,19 +23,19 @@
 
 <div>
     <ol id="lst">
-        <li id="li1">First</li>
-        <li id="li2">Second</li>
-        <li id="li1">Thirth</li>
-        <li id="li2">Fourth</li>
-        <li id="li1">Fifth</li>
-        <li id="li2">Sixth</li>
-        <li id="li1">Seventh</li>
+        <li class="li1">First</li>
+        <li class="li2">Second</li>
+        <li class="li1">Thirth</li>
+        <li class="li2">Fourth</li>
+        <li class="li1">Fifth</li>
+        <li class="li2">Sixth</li>
+        <li class="li1">Seventh</li>
     </ol>
 </div>
 
 <div class="sHeader">Table</div>
 
-<table align="center" border="1" cellspacing="10" id="tb">
+<table id="tb">
     <tr>
         <td>1</td>
         <td>2</td>
@@ -65,14 +63,12 @@
 </table>
 
 <div class="sHeader" id="dImg" onclick="imgDrop(this);">
-    <center>
-    <img src="./img/img2.jpg" id="ddImg" width="800" height="450" align="top" style="display: none" alt="dropDownImage">
-    </center>
+    <img src="./img/img2.jpg" id="ddImg" alt="dropDownImage"  style="display: none">
     Image
 </div>
 
 <div>
-    <img src="./img/img1.jpg" width="800" height="500" align="top" alt="FirstImg">
+    <img src="./img/img1.jpg" alt="FirstImg">
 </div>
 </body>
 </html>

@@ -41,7 +41,7 @@ div {
 
 /*///////////////////////////////////////LIST/////////////////////////////*/
 #lst {
-    font-family: Segoe UI Light, monospace;
+    font-family: "Segoe UI Light", monospace;
     font-size: 20px;
     background-color: blue;
     border-radius: 10px;
@@ -53,7 +53,7 @@ div {
     border-color: rgba(255, 255, 255, 0.3);
 }
 
-#lst #li1 {
+#lst .li1 {
     text-align: center;
     margin: 10px;
     background-color: rgba(0, 0, 0, 0.2);
@@ -65,7 +65,7 @@ div {
     transition: color 0.5s, border-color 0.5s;
 }
 
-#lst #li1:hover {
+#lst .li1:hover {
     color: white;
     padding-left: 40px;
     border-color: blue;
@@ -73,7 +73,7 @@ div {
     transition: color 0.5s, border-color 0.5s, transform 0.3s;
 }
 
-#lst #li2 {
+#lst .li2 {
     text-align: center;
     margin-left: 50px;
     background-color: rgba(0, 0, 0, 0.2);
@@ -85,7 +85,7 @@ div {
     transition: color 0.5s, border-color 0.5s;
 }
 
-#lst #li2:hover {
+#lst .li2:hover {
     color: white;
     border-color: white;
     transition: color 0.5s, border-color 0.5s;
@@ -94,8 +94,15 @@ div {
 /*///////////////////////////////////////TABLE/////////////////////////////*/
 
 #tb {
+    margin: auto;
+    border: 1px;
+    border-spacing: 10px;
+    transition: all 0.3s;
+}
+
+#tb:hover {
     background-color: rgba(255, 255, 255, 0.1);
-    font-family: Segoe UI Light, monospace;
+    font-family: "Segoe UI Light", monospace;
     border-style: none;
     border-radius: 0 30px;
     box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.3);
@@ -138,11 +145,14 @@ img {
     border-color: silver;
     box-shadow: inset 0 20px 1px rgba(0, 0, 0, 0.6);
     opacity: 0.5;
+    width: 800px;
+    height: 500px;
 }
 
 #ddImg {
-    margin: 5px;
-    align: center;
+    width: 800px;
+    height: 450px;
+    margin: auto;
     display: block;
     transition: all 0.5s;
 }
