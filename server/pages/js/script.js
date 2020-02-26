@@ -18,3 +18,23 @@ function imgDrop(element) {
         element.display = "none"
     }
 }
+
+function ShowTime() {
+    let ctime = new Date();
+    alert("Day: " + ctime.getDate() + ", Month: " + ctime.getMonth() + ", Year: " + ctime.getFullYear() + ", Hours: " + ctime.getHours() + ", Minutes: " + ctime.getMinutes());
+}
+
+function ShowMessage(msg) {
+    alert(msg)
+}
+
+function SetWord() {
+    let sName, tName;
+    sName = prompt("Your name: ", "NoName");
+    tName = confirm("Your name is: " + sName + " ?");
+    if (tName === true) {
+        alert("Welcome: " + sName + "!!!");
+    }else {
+        alert("you are spamer!");
+    }
+}

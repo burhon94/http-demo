@@ -11,6 +11,14 @@
 
 <ul id="menu">
     <li><a href="index.html">HOME</a></li>
+    <li class="dd-menu">
+        <a href="#" class="dd">DROPDOWN</a>
+        <div class="dd-content">
+            <a href="#" onclick="ShowMessage('Hello Anybody from BackEnd(Golang),  FrontEnd(JS, HTML and CSS)')">Say Hello</a>
+            <a href="#" onclick="ShowTime()">Current Date-Time</a>
+            <a href="#" onclick="SetWord()">Set Name</a>
+        </div>
+    </li>
 </ul>
 
 <div class="sHeader">Headers</div>
@@ -67,7 +75,7 @@
 </table>
 
 <div class="sHeader" id="dImg" onclick="imgDrop(this);">
-    <img src="./img/img2.jpg" id="ddImg" alt="dropDownImage"  style="display: none">
+    <img src="./img/img2.jpg" id="ddImg" alt="dropDownImage" style="display: none">
     Image
 </div>
 
@@ -77,8 +85,8 @@
 
 <div id="footer">
     <div id="valid">
-    <img src="./img/vhtml5.png" alt="Valid HTML5" id="fHTML">
-    <img src="./img/vcss.gif" alt="Valid CSS" id="fCSS">
+        <img src="./img/vhtml5.png" alt="Valid HTML5" id="fHTML">
+        <img src="./img/vcss.gif" alt="Valid CSS" id="fCSS">
     </div>
 </div>
 </body>
