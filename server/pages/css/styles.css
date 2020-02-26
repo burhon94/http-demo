@@ -1,5 +1,12 @@
+body {
+    background-image: url("./../img/2.png"), url("./../img/bg3-dots.png");
+    background-position: 50% 0;
+    background-repeat: repeat, repeat;
+}
+
 /*///////////////////////HEADERS/////////////////////////////*/
 h1, h2, h3, h4, h5, h6 {
+    text-align: center;
     color: white;
     font-family: "Segoe UI Light", monospace;
 }
@@ -134,6 +141,8 @@ img {
 }
 
 #ddImg {
+    margin: 5px;
+    align: center;
     display: block;
     transition: all 0.5s;
 }

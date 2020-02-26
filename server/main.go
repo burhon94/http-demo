@@ -169,6 +169,26 @@ func handleConn(conn net.Conn) (err error) {
 				nameOfFile += file.Name()
 				typeOfContent += "image/jpg"
 			}
+			case "/img/2.png":
+			{
+				file, err := os.Open("./server/pages/img/2.png")
+				if err != nil {
+					log.Printf("can't open 2.jpg: %v", err)
+					return err
+				}
+				nameOfFile += file.Name()
+				typeOfContent += "image/png"
+			}
+			case "/img/bg3-dots.png":
+			{
+				file, err := os.Open("./server/pages/img/bg3-dots.png")
+				if err != nil {
+					log.Printf("can't open bg3-dots.png: %v", err)
+					return err
+				}
+				nameOfFile += file.Name()
+				typeOfContent += "image/png"
+			}
 			
 		//CSS Requests 	
 		case "/css/styles.css":
@@ -180,6 +200,18 @@ func handleConn(conn net.Conn) (err error) {
 				}
 				nameOfFile += file.Name()
 				typeOfContent += "text/css"
+			}
+		
+		//JS Requests
+		case "/js/script.js":
+			{
+				file, err := os.Open("./server/pages/js/script.js")
+				if err != nil {
+					log.Printf("can't open script.js: %v", err)
+					return err
+				}
+				nameOfFile += file.Name()
+				typeOfContent += "text/javascript"
 			}
 		
 		}

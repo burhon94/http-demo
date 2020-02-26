@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home Page</title>
     <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    <script type="text/javascript" src="./js/script.js"></script>
 </head>
 <body>
 
@@ -64,24 +65,14 @@
 </table>
 
 <div class="sHeader" id="dImg" onclick="imgDrop(this);">
+    <center>
     <img src="./img/img2.jpg" id="ddImg" width="800" height="450" align="top" style="display: none" alt="dropDownImage">
+    </center>
     Image
 </div>
 
 <div>
-    <img src="./img/img1.jpg" width="800" height="600" align="top" alt="FirstImg">
+    <img src="./img/img1.jpg" width="800" height="500" align="top" alt="FirstImg">
 </div>
-<script type="text/javascript">
-    function imgDrop(element) {
-        let style;
-        element = element.getElementsByTagName("img")[0].style;
-        style = element.display;
-        if (style === "none") {
-            element.display = "block"
-        } else {
-            element.display = "none"
-        }
-    }
-</script>
 </body>
 </html>
