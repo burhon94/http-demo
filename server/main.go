@@ -137,6 +137,16 @@ func handleConn(conn net.Conn) (err error) {
 				nameOfFile += file.Name()
 				typeOfContent += "text/html"
 			}
+		case "/index.html":
+			{
+				file, err := os.Open("./server/pages/index.html")
+				if err != nil {
+					log.Printf("can't open index.html: %v", err)
+					return err
+				}
+				nameOfFile += file.Name()
+				typeOfContent += "text/html"
+			}
 
 		//Image Requests
 		case "/favicon.ico":
@@ -184,6 +194,26 @@ func handleConn(conn net.Conn) (err error) {
 				file, err := os.Open("./server/pages/img/bg3-dots.png")
 				if err != nil {
 					log.Printf("can't open bg3-dots.png: %v", err)
+					return err
+				}
+				nameOfFile += file.Name()
+				typeOfContent += "image/png"
+			}
+			case "/img/vcss.gif":
+			{
+				file, err := os.Open("./server/pages/img/vcss.gif")
+				if err != nil {
+					log.Printf("can't open vcss.gif: %v", err)
+					return err
+				}
+				nameOfFile += file.Name()
+				typeOfContent += "image/gif"
+			}
+			case "/img/vhtml5.png":
+			{
+				file, err := os.Open("./server/pages/img/vhtml5.png")
+				if err != nil {
+					log.Printf("can't open vhtml5.png: %v", err)
 					return err
 				}
 				nameOfFile += file.Name()
