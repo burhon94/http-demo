@@ -5,7 +5,7 @@ body {
 }
 
 /*///////////////////////MENU/////////////////////////////*/
-#menu  {
+#menu, #menu404  {
     position: fixed;
     left: 0;
     right: 0;
@@ -16,12 +16,12 @@ body {
     transition: transform 0.3s;
 }
 
-#menu:hover {
+#menu:hover, #menu404:hover {
     transform: translate(0, 0);
     transition: transform 0.3s;
 }
 
-#menu li {
+#menu li, #menu404 li {
     text-align: center;
     margin-left: 37%;
     background-color: #9AAAE2;
@@ -33,7 +33,7 @@ body {
     transition: box-shadow 0.3s;
 }
 
-#menu li:hover {
+#menu li:hover, #menu404 li:hover {
     background-color: #9D70CA;
     box-shadow: inset 10px 10px 0 rgba(0, 0, 0, 0.3);
     transition: box-shadow 0.3s;
@@ -46,7 +46,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: "Segoe UI Light", monospace;
 }
 
-.sHeader {
+.sHeader, .sHeader404 {
     color: #FC3DFA;
     font-family: "Segoe UI Light", monospace;
     font-style: italic;
@@ -62,7 +62,7 @@ h1, h2, h3, h4, h5, h6 {
     transition: color 0.5s, border-radius 0.3s ease-in-out, box-shadow 0.5s;
 }
 
-.sHeader:hover, #footer:hover {
+.sHeader:hover, #footer:hover, .sHeader404:hover {
     color: white;
     border-radius: 50px 0;
     box-shadow: 60px 10px 5px rgba(0, 0, 0, 0.05), 0 0 30px 10px #AEAAF0;

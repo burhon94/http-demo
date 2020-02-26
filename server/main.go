@@ -169,7 +169,7 @@ func handleConn(conn net.Conn) (err error) {
 				nameOfFile += file.Name()
 				typeOfContent += "image/jpg"
 			}
-			case "/img/img2.jpg":
+		case "/img/img2.jpg":
 			{
 				file, err := os.Open("./server/pages/img/img2.jpg")
 				if err != nil {
@@ -179,7 +179,7 @@ func handleConn(conn net.Conn) (err error) {
 				nameOfFile += file.Name()
 				typeOfContent += "image/jpg"
 			}
-			case "/img/2.png":
+		case "/img/2.png":
 			{
 				file, err := os.Open("./server/pages/img/2.png")
 				if err != nil {
@@ -189,7 +189,7 @@ func handleConn(conn net.Conn) (err error) {
 				nameOfFile += file.Name()
 				typeOfContent += "image/png"
 			}
-			case "/img/bg3-dots.png":
+		case "/img/bg3-dots.png":
 			{
 				file, err := os.Open("./server/pages/img/bg3-dots.png")
 				if err != nil {
@@ -199,7 +199,7 @@ func handleConn(conn net.Conn) (err error) {
 				nameOfFile += file.Name()
 				typeOfContent += "image/png"
 			}
-			case "/img/vcss.gif":
+		case "/img/vcss.gif":
 			{
 				file, err := os.Open("./server/pages/img/vcss.gif")
 				if err != nil {
@@ -209,7 +209,7 @@ func handleConn(conn net.Conn) (err error) {
 				nameOfFile += file.Name()
 				typeOfContent += "image/gif"
 			}
-			case "/img/vhtml5.png":
+		case "/img/vhtml5.png":
 			{
 				file, err := os.Open("./server/pages/img/vhtml5.png")
 				if err != nil {
@@ -219,7 +219,7 @@ func handleConn(conn net.Conn) (err error) {
 				nameOfFile += file.Name()
 				typeOfContent += "image/png"
 			}
-			
+
 		//CSS Requests 	
 		case "/css/styles.css":
 			{
@@ -231,7 +231,7 @@ func handleConn(conn net.Conn) (err error) {
 				nameOfFile += file.Name()
 				typeOfContent += "text/css"
 			}
-		
+
 		//JS Requests
 		case "/js/script.js":
 			{
@@ -243,7 +243,45 @@ func handleConn(conn net.Conn) (err error) {
 				nameOfFile += file.Name()
 				typeOfContent += "text/javascript"
 			}
-		
+		default:
+			html404 := `<!doctype html>
+			<html lang="en">
+				<head>
+    				<meta charset="UTF-8">
+					<meta http-equiv="X-UA-Compatible" content="ie=edge">
+    				<title>Page Not Found</title>
+		    		<link rel="stylesheet" type="text/css" href="./css/styles.css">
+    				<script src="./js/script.js"></script>
+				</head>
+				<body>
+
+					<ul id="menu404">
+					    <li><a href="index.html">HOME</a></li>
+					</ul>
+
+					<h1  class="sHeader404"><strong>HTTP 404</strong></h1>
+
+					<div  id="lst">
+
+						<h3>The page you are looking for is not found.</h3>
+						<img src="./img/img1.jpg" width="800" height="450" align="top">
+					</div>
+
+				</body>
+			</html>`
+
+			log.Printf("request: %s", request)
+			_, _ = writer.WriteString("HTTP/1.1 404 Not Found\r\n")
+			_, _ = writer.WriteString(fmt.Sprintf("Content-Length: %d\r\n", len(html404)))
+			_, _ = writer.WriteString("Content-Type: text/html\r\n")
+			_, _ = writer.WriteString("Connection: Close\r\n")
+			_, _ = writer.WriteString("\r\n")
+			_, _ = writer.WriteString(html404)
+			err := writer.Flush()
+			if err != nil {
+				log.Printf("can't sent response: %v", err)
+			}
+			log.Printf("response on: %s", request)
 		}
 	} else {
 		log.Printf("Wrong Method: %s, or Protocol: %s", method, protocol)
