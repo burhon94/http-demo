@@ -1,15 +1,18 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net"
 	"os"
+	"strings"
 )
 
 func main() {
 	host := "0.0.0.0"
-	port , ok := os.LookupEnv("PORT")
+	port, ok := os.LookupEnv("PORT")
 	if !ok {
 		port = "9999"
 	}
@@ -51,14 +54,141 @@ func startServer(addr string) (err error) {
 	}
 }
 
-func handleConn(conn net.Conn) (err error){
+func handleConn(conn net.Conn) (err error) {
 	defer func() {
 		err := conn.Close()
 		if err != nil {
 			log.Printf("can't close handle connect: %v", err)
 		}
 	}()
-	log.Printf("success handle")
+	log.Println("success handle")
+	log.Println("try read client request")
+	reader := bufio.NewReaderSize(conn, 4096)
+	writer := bufio.NewWriter(conn)
+	counter := 0
+	buffer := [4096]byte{}
+
+	for {
+
+		if counter == 4096 {
+			log.Printf("request too long header")
+			log.Printf("too long request header")
+			_, _ = writer.WriteString("HTTP/1.1 413 Payload Too Large\r\n")
+			_, _ = writer.WriteString("Content-Length: 0\r\n")
+			_, _ = writer.WriteString("Connection: close\r\n")
+			_, _ = writer.WriteString("\r\n")
+			err := writer.Flush()
+			if err != nil {
+				log.Printf("can't sent response: %v", err)
+			}
+			return err
+		}
+
+		read, err := reader.ReadByte()
+		if err != nil {
+			log.Printf("can't read request line: %v", err)
+			_, _ = writer.WriteString("HTTP/1.1 400 Bad Request\r\n")
+			_, _ = writer.WriteString("Content-Length: 0\r\n")
+			_, _ = writer.WriteString("Connection: close\r\n")
+			_, _ = writer.WriteString("\r\n")
+			err := writer.Flush()
+			if err != nil {
+				log.Printf("can't sent response: %v", err)
+			}
+			return err
+		}
+
+		buffer[counter] = read
+		counter++
+		if counter < 4 {
+			continue
+		}
+		if string(buffer[counter-4:counter]) == "\r\n\r\n" {
+			break
+		}
+
+		headerString := string(buffer[:counter-4])
+		requestHeaderParts := strings.Split(headerString, "\r\n")
+		log.Println("parse request line")
+		requestLine := requestHeaderParts[0]
+		requestParts := strings.Split(strings.TrimSpace(requestLine), " ")
+
+		if len(requestParts) != 3 {
+			return err
+		}
+
+		method, request, protocol := requestParts[0], requestParts[1], requestParts[2]
+		typeOfContent := ""
+		nameOfFile := ""
+
+		log.Printf("request: %s", request)
+
+		if method == "GET" && protocol == "HTTP/1.1" {
+
+			switch request {
+			// HTML Requests
+			case "/": {
+				file, err := os.Open(".server/.pages/index.html")
+				if err != nil {
+					log.Printf("can't open index.html")
+				}
+				nameOfFile += file.Name()
+				typeOfContent += "text/html"
+			}
+
+			}
+		}else {
+			log.Printf("Wrong Method: %s, or Protocol: %s", method, protocol)
+			return err
+		}
+
+		return nil
+	}
+
 	return nil
 }
 
+func writeHeader(conn net.Conn, fileName, contentType, request string) (err error) {
+	writer := bufio.NewWriter(conn)
+	bytes, err := ioutil.ReadFile(fileName)
+	if err != nil {
+		log.Printf("can't read file: %v", err)
+		return err
+	}
+	_, err = writer.WriteString("HTTP/1.1 200 OK\r\n")
+	if err != nil {
+		log.Printf("can't write: %v", err)
+		return err
+	}
+	_, err = writer.WriteString(fmt.Sprintf("Content-Length: %d\r\n", len(bytes)))
+	if err != nil {
+		log.Printf("can't write: %v", err)
+	}
+	_, err = writer.WriteString("Content-Type:" + " " + contentType + "\r\n")
+	if err != nil {
+		log.Printf("can't write: %v", err)
+		return err
+	}
+	_, err = writer.WriteString("Connection: Close\r\n")
+	if err != nil {
+		log.Printf("can't write: %v", err)
+		return err
+	}
+	_, err = writer.WriteString("\r\n")
+	if err != nil {
+		log.Printf("can't write: %v", err)
+		return err
+	}
+	_, err = writer.Write(bytes)
+	if err != nil {
+		log.Printf("can't write: %v", err)
+		return err
+	}
+	err = writer.Flush()
+	if err != nil {
+		log.Printf("can't sent response: %v", err)
+		return err
+	}
+	log.Printf("response on: %s", request)
+	return nil
+}
