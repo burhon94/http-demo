@@ -127,18 +127,53 @@ func handleConn(conn net.Conn) (err error) {
 
 		switch request {
 		// HTML Requests
-		case "/": {
-			file, err := os.Open("./server/pages/index.html")
-			if err != nil {
-				log.Printf("can't open index.html: %v", err)
-				return err
+		case "/":
+			{
+				file, err := os.Open("./server/pages/index.html")
+				if err != nil {
+					log.Printf("can't open index.html: %v", err)
+					return err
+				}
+				nameOfFile += file.Name()
+				typeOfContent += "text/html"
 			}
-			nameOfFile += file.Name()
-			typeOfContent += "text/html"
-		}
 
+		//Image Requests
+		case "/favicon.ico":
+			{
+				file, err := os.Open("./server/pages/img/icon.png")
+				if err != nil {
+					log.Printf("can't open icon.png: %v", err)
+					return err
+				}
+				nameOfFile += file.Name()
+				typeOfContent += "image/x-icon"
+			}
+		case "/img1.jpg":
+			{
+				file, err := os.Open("./server/pages/img/img1.jpg")
+				if err != nil {
+					log.Printf("can't open img1.jpg: %v", err)
+					return err
+				}
+				nameOfFile += file.Name()
+				typeOfContent += "image/jpg"
+			}
+			
+		//CSS Requests 	
+		case "/pagesStyles.css":
+			{
+				file, err := os.Open("./server/pages/css/styles.css")
+				if err != nil {
+					log.Printf("can't open styles.css: %v", err)
+					return err
+				}
+				nameOfFile += file.Name()
+				typeOfContent += "text/css"
+			}
+		
 		}
-	}else {
+	} else {
 		log.Printf("Wrong Method: %s, or Protocol: %s", method, protocol)
 		return err
 	}
