@@ -210,12 +210,7 @@ img {
 /*/////////////////////// FOOTER /////////////////////////////*/
 #footer {
     color: #FC3DFA;
-    font-family: "Segoe UI Light", monospace;
-    font-style: italic;
-    font-size: 45px;
-    text-align: center;
     box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.3);
-    margin: 90px 0 0 0;
     background-color: rgba(78, 0, 107, 0.5);
     border-style: solid;
     border-color: #AE00F0;
