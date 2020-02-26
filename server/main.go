@@ -69,7 +69,6 @@ func handleConn(conn net.Conn) (err error) {
 	buffer := [4096]byte{}
 
 	for {
-
 		if counter == 4096 {
 			log.Printf("request too long header")
 			log.Printf("too long request header")
@@ -106,45 +105,49 @@ func handleConn(conn net.Conn) (err error) {
 		if string(buffer[counter-4:counter]) == "\r\n\r\n" {
 			break
 		}
-
-		headerString := string(buffer[:counter-4])
-		requestHeaderParts := strings.Split(headerString, "\r\n")
-		log.Println("parse request line")
-		requestLine := requestHeaderParts[0]
-		requestParts := strings.Split(strings.TrimSpace(requestLine), " ")
-
-		if len(requestParts) != 3 {
-			return err
-		}
-
-		method, request, protocol := requestParts[0], requestParts[1], requestParts[2]
-		typeOfContent := ""
-		nameOfFile := ""
-
-		log.Printf("request: %s", request)
-
-		if method == "GET" && protocol == "HTTP/1.1" {
-
-			switch request {
-			// HTML Requests
-			case "/": {
-				file, err := os.Open(".server/.pages/index.html")
-				if err != nil {
-					log.Printf("can't open index.html")
-				}
-				nameOfFile += file.Name()
-				typeOfContent += "text/html"
-			}
-
-			}
-		}else {
-			log.Printf("Wrong Method: %s, or Protocol: %s", method, protocol)
-			return err
-		}
-
-		return nil
 	}
 
+	headerString := string(buffer[:counter-4])
+	requestHeaderParts := strings.Split(headerString, "\r\n")
+	log.Println("parse request line")
+	requestLine := requestHeaderParts[0]
+	requestParts := strings.Split(strings.TrimSpace(requestLine), " ")
+
+	if len(requestParts) != 3 {
+		return err
+	}
+
+	method, request, protocol := requestParts[0], requestParts[1], requestParts[2]
+	typeOfContent := ""
+	nameOfFile := ""
+
+	log.Printf("request: %s", request)
+
+	if method == "GET" && protocol == "HTTP/1.1" {
+
+		switch request {
+		// HTML Requests
+		case "/": {
+			file, err := os.Open("./server/pages/index.html")
+			if err != nil {
+				log.Printf("can't open index.html: %v", err)
+				return err
+			}
+			nameOfFile += file.Name()
+			typeOfContent += "text/html"
+		}
+
+		}
+	}else {
+		log.Printf("Wrong Method: %s, or Protocol: %s", method, protocol)
+		return err
+	}
+
+	err = writeHeader(conn, nameOfFile, typeOfContent, request)
+	if err != nil {
+		log.Printf("can't response to reqeest: %s, error: %v", request, err)
+		return err
+	}
 	return nil
 }
 
