@@ -1,23 +1,28 @@
-<html>
+<!doctype html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home Page</title>
-    <link rel="stylesheet" type="text/css" href="pagesStyles.css">
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
 </head>
 <body>
 
 <div class="sHeader">Headers</div>
 
-<h1 align="center">CSS EXAMPLES</h1>
-<h1 align="center">This is a header 1</h1>
-<h2 align="center">This is a header 2</h2>
-<h3 align="center">This is a header 3</h3>
-<h4 align="center">This is a header 4</h4>
-<h5 align="center">This is a header 5</h5>
-<h6 align="center">This is a header 6</h6>
+<h1>CSS EXAMPLES</h1>
+<h1>This is a header 1</h1>
+<h2>This is a header 2</h2>
+<h3>This is a header 3</h3>
+<h4>This is a header 4</h4>
+<h5>This is a header 5</h5>
+<h6>This is a header 6</h6>
 
 <div class="sHeader">List</div>
 
-<center>
+<div>
     <ol id="lst">
         <li id="li1">First</li>
         <li id="li2">Second</li>
@@ -27,7 +32,7 @@
         <li id="li2">Sixth</li>
         <li id="li1">Seventh</li>
     </ol>
-</center>
+</div>
 
 <div class="sHeader">Table</div>
 
@@ -58,6 +63,25 @@
     </tr>
 </table>
 
-<center><img src="img1.jpg" width="800" height="450" align="top"></center>
+<div class="sHeader" id="dImg" onclick="imgDrop(this);">
+    <img src="./img/img2.jpg" id="ddImg" width="800" height="450" align="top" style="display: none" alt="dropDownImage">
+    Image
+</div>
+
+<div>
+    <img src="./img/img1.jpg" width="800" height="600" align="top" alt="FirstImg">
+</div>
+<script type="text/javascript">
+    function imgDrop(element) {
+        let style;
+        element = element.getElementsByTagName("img")[0].style;
+        style = element.display;
+        if (style === "none") {
+            element.display = "block"
+        } else {
+            element.display = "none"
+        }
+    }
+</script>
 </body>
 </html>

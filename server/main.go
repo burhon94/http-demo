@@ -149,7 +149,7 @@ func handleConn(conn net.Conn) (err error) {
 				nameOfFile += file.Name()
 				typeOfContent += "image/x-icon"
 			}
-		case "/img1.jpg":
+		case "/img/img1.jpg":
 			{
 				file, err := os.Open("./server/pages/img/img1.jpg")
 				if err != nil {
@@ -159,9 +159,19 @@ func handleConn(conn net.Conn) (err error) {
 				nameOfFile += file.Name()
 				typeOfContent += "image/jpg"
 			}
+			case "/img/img2.jpg":
+			{
+				file, err := os.Open("./server/pages/img/img2.jpg")
+				if err != nil {
+					log.Printf("can't open img2.jpg: %v", err)
+					return err
+				}
+				nameOfFile += file.Name()
+				typeOfContent += "image/jpg"
+			}
 			
 		//CSS Requests 	
-		case "/pagesStyles.css":
+		case "/css/styles.css":
 			{
 				file, err := os.Open("./server/pages/css/styles.css")
 				if err != nil {
