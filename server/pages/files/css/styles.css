@@ -261,6 +261,39 @@ img {
     height: 60px;
 }
 
+/*/////////////////////// CALCULATOR /////////////////////////////*/
+.calc {
+    font-family: "Segoe UI Light", monospace;
+    color: white;
+    text-align: center;
+    min-width: 500px;
+    background-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.4);
+}
+
+.calc td {
+    font-size: 30px;
+    max-width: 700px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+.calc td:hover {
+    background-color: white;
+    color: black;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+.calc p {
+    background-color: white;
+    color: black;
+    text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);
+    font-family: "Fira Code Retina", monospace;
+    font-size: 50px;
+}
+
+
 /*/////////////////////// FOOTER /////////////////////////////*/
 #footer {
     color: #FC3DFA;

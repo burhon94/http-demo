@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Calculator-Go</title>
     <link rel="stylesheet" type="text/css" href="files/css/styles.css">
-    <script src="files/js/script.js"></script>
 </head>
 <body>
 
@@ -22,36 +21,41 @@
 </ul>
 <br><br>
 <h1 align=center>Table Calculator</h1>
-<table align=center>
+<table align=center class="calc">
     <tr>
         <td colspan=5>CALCULATOR</td>
     </tr>
     <tr>
-        <td colspan=5><p>DISPLAY</p></td>
+        <td colspan=5><p id="calc-display">DISPLAY</p></td>
     </tr>
     <tr>
-        <td>7</td>
-        <td>8</td>
-        <td>9</td>
-        <td colspan=2>/</td>
+        <td onclick="SetN(7)">7</td>
+        <td onclick="SetN(8)">8</td>
+        <td onclick="SetN(9)">9</td>
+        <td colspan=2 onclick="SetA(4)">/</td>
     </tr>
     <tr>
-        <td>4</td>
-        <td>5</td>
-        <td>6</td>
-        <td colspan=2>*</td>
+        <td onclick="SetN(4)">4</td>
+        <td onclick="SetN(5)">5</td>
+        <td onclick="SetN(6)">6</td>
+        <td colspan=2 onclick="SetA(3)">*</td>
     </tr>
     <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>3</td>
-        <td>-</td>
-        <td rowspan=2>=</td>
+        <td onclick="SetN(1)">1</td>
+        <td onclick="SetN(2)">2</td>
+        <td onclick="SetN(3)">3</td>
+        <td colspan=2 onclick="SetA(6)">root</td>
     </tr>
     <tr>
-        <td colspan=2>0</td>
-        <td>C</td>
-        <td>+</td>
+        <td colspan=2 onclick="SetN(0)">0</td>
+        <td onclick="Clear()">C</td>
+        <td onclick="SetA(2)">-</td>
+        <td rowspan=2 onclick="Result()">=</td>
+    </tr>
+    <tr>
+        <td onclick="SetA(5)">^</td>
+        <td colspan="2" onclick="SetN(3.141592653589793)">pi</td>
+        <td onclick="SetA(1)">+</td>
     </tr>
 </table>
 <h2 align=center>My simply calculator</h2>
@@ -61,5 +65,7 @@
         <img src="files/img/vcss.gif" alt="Valid CSS" id="fCSS">
     </div>
 </div>
+
+<script src="files/js/script.js"></script>
 </body>
 </html>

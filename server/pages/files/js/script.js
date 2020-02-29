@@ -38,3 +38,110 @@ function SetWord() {
         alert("you are spamer!");
     }
 }
+
+//////////////////////////////CALCULATOR//////////////////////
+const display = document.getElementById("calc-display");
+a = "", b = "", c = "", d = "",
+    aa = 0, bb = 0, cc = 0, pp = 0,
+    e = false, s = false;
+
+function ShowDisplay() {
+    if (!e) {
+        if (a !== "" || d !== "" || b !== "") {
+            display.innerHTML = a + d + b;
+        } else if (a === "" && d === "" && b === "") {
+            display.innerHTML = "Cleared";
+        }
+
+    } else {
+        display.innerHTML = "=" + c;
+    }
+}
+
+function Clear() {
+    a = "";
+    b = "";
+    c = "";
+    d = "";
+    e = false;
+    s = false;
+    ShowDisplay();
+}
+
+function SetN(n) {
+    if (e === true) {
+        e = false;
+        s = false;
+        Clear();
+    }
+    if (!s) {
+        a += n.toString();
+    } else {
+        b += n.toString();
+    }
+    ShowDisplay();
+}
+
+function SetA(o) {
+    if (a === "") {
+        a = "0";
+    }
+    pp = o;
+    s = true;
+    if (e === true) {
+        a = c;
+        b = "";
+        c = "";
+    }
+    e = false;
+    switch (pp) {
+        case 1:
+            d = "+";
+            break;
+        case 2:
+            d = "-";
+            break;
+        case 3:
+            d = "*";
+            break;
+        case 4:
+            d = "/";
+            break;
+        case 5:
+            d = "^";
+            break;
+        case 6:
+            d = "root";
+            break;
+    }
+    ShowDisplay();
+}
+
+function Result() {
+    if (b === "") {
+        b = "0";
+    }
+    if (e === true) {
+        a = c;
+    }
+    switch (pp) {
+        case 1:
+            c = parseFloat(a) + parseFloat(b);
+            break;
+        case 2:
+            c = parseFloat(a) - parseFloat(b);
+            break;
+        case 3:
+            c = parseFloat(a) * parseFloat(b);
+            break;
+        case 4:
+            c = parseFloat(a) / parseFloat(b);
+            break;
+        case 5:
+            c = Math.pow(parseFloat(a), parseFloat(b))
+        case 6:
+            c = Math.sqrt(parseFloat(a))
+    }
+    e = true;
+    ShowDisplay();
+}
