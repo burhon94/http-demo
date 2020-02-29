@@ -1,5 +1,5 @@
 body {
-    background-image: url("./../img/2.png"), url("./../img/bg3-dots.png");
+    background-image: url("../img/2.png"), url("../img/bg3-dots.png");
     background-position: 50% 0;
     background-repeat: repeat, repeat;
 }
@@ -110,6 +110,10 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 0 50px;
     border-width: 2px;
     transition: color 0.5s, border-radius 0.3s ease-in-out, box-shadow 0.5s;
+}
+
+.sHeader404 {
+    font-size: 35px;
 }
 
 .sHeader:hover, #footer:hover, .sHeader404:hover {
