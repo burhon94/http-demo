@@ -43,7 +43,7 @@ func SendFile(conn net.Conn, fileName, request string) (err error) {
 
 	if fileFormat == ".html" {
 		contentType = ContentHTML
-		err = headerWriter(conn, ServerFilesPages + fileName, contentType, request)
+		err = headerWriter(conn, ServerFilesPages+fileName, contentType, request)
 		if err != nil {
 			log.Printf("can't sent data to header writer: %v", err)
 		}
@@ -53,7 +53,7 @@ func SendFile(conn net.Conn, fileName, request string) (err error) {
 	if fileFormat == ".jpg" {
 		contentType = ContentJPG
 		fileName = path.Base(fileName)
-		err = headerWriter(conn, ServerFilesIMGs + fileName, contentType, request)
+		err = headerWriter(conn, ServerFilesIMGs+fileName, contentType, request)
 		if err != nil {
 			log.Printf("can't sent data to header writer: %v", err)
 		}
@@ -63,7 +63,7 @@ func SendFile(conn net.Conn, fileName, request string) (err error) {
 	if fileFormat == ".png" {
 		contentType = ContentJPG
 		fileName = path.Base(fileName)
-		err = headerWriter(conn, ServerFilesIMGs + fileName, contentType, request)
+		err = headerWriter(conn, ServerFilesIMGs+fileName, contentType, request)
 		if err != nil {
 			log.Printf("can't sent data to header writer: %v", err)
 		}
@@ -73,7 +73,7 @@ func SendFile(conn net.Conn, fileName, request string) (err error) {
 	if fileFormat == ".gif" {
 		contentType = ContentJPG
 		fileName = path.Base(fileName)
-		err = headerWriter(conn, ServerFilesIMGs + fileName, contentType, request)
+		err = headerWriter(conn, ServerFilesIMGs+fileName, contentType, request)
 		if err != nil {
 			log.Printf("can't sent data to header writer: %v", err)
 		}
@@ -82,7 +82,7 @@ func SendFile(conn net.Conn, fileName, request string) (err error) {
 
 	if fileFormat == ".ico" {
 		contentType = ContentICO
-		err = headerWriter(conn, ServerFilesIMGs + fileName, contentType, request)
+		err = headerWriter(conn, ServerFilesIMGs+fileName, contentType, request)
 		if err != nil {
 			log.Printf("can't sent data to header writer: %v", err)
 		}
@@ -92,7 +92,7 @@ func SendFile(conn net.Conn, fileName, request string) (err error) {
 	if fileFormat == ".css" {
 		contentType = ContentCSS
 		fileName = path.Base(fileName)
-		err = headerWriter(conn, ServerFilesCSSs + fileName, contentType, request)
+		err = headerWriter(conn, ServerFilesCSSs+fileName, contentType, request)
 		if err != nil {
 			log.Printf("can't sent data to header writer: %v", err)
 		}
@@ -102,7 +102,7 @@ func SendFile(conn net.Conn, fileName, request string) (err error) {
 	if fileFormat == ".js" {
 		contentType = ContentJS
 		fileName = path.Base(fileName)
-		err = headerWriter(conn, ServerFilesJSs + fileName, contentType, request)
+		err = headerWriter(conn, ServerFilesJSs+fileName, contentType, request)
 		if err != nil {
 			log.Printf("can't sent data to header writer: %v", err)
 		}

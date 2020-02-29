@@ -34,7 +34,7 @@ function SetWord() {
     tName = confirm("Your name is: " + sName + " ?");
     if (tName === true) {
         alert("Welcome: " + sName + "!!!");
-    }else {
+    } else {
         alert("you are spamer!");
     }
 }

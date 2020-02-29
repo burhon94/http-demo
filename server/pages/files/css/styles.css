@@ -5,7 +5,7 @@ body {
 }
 
 /*///////////////////////MENU/////////////////////////////*/
-#menu, #menu404  {
+#menu, #menu404 {
     margin: 0;
     position: fixed;
     left: 0;
@@ -23,7 +23,7 @@ body {
 
 #menu li {
     text-align: center;
-    margin: 0 13%;
+    margin: 0 4%;
     font-family: "Segoe UI Light", monospace;
     font-size: 30px;
     min-width: 23.7%;
