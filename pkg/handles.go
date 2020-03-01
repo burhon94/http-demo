@@ -75,8 +75,6 @@ func HandleConn(conn net.Conn) (err error) {
 			return err
 		}
 
-		var fileName = request[:]
-		fileName = strings.TrimPrefix(fileName, "/") //TODO DELETE
 		filesDir, err := FilesDir(ServerFilesPages)
 		if err != nil {
 			log.Printf("can't check server files: %s, error %v", ServerFilesPages, err)
@@ -85,10 +83,8 @@ func HandleConn(conn net.Conn) (err error) {
 		ext := path.Ext(request)
 		if ext == ".html" {
 			for _, serverFile := range filesDir {
-				serverFile = serverFile[13:]
-				if fileName == serverFile {
-					serverFile = path.Base(serverFile) //TODO DELETE
-					err := SendFile(conn, fileName, request)
+				if request == serverFile {
+					err := SendFile(conn, request, request)
 					if err != nil {
 						log.Printf("can't process the request: %v", err)
 					}
@@ -98,9 +94,9 @@ func HandleConn(conn net.Conn) (err error) {
 		}
 
 		for _, serverFile := range filesDir {
-			serverFile = serverFile[13:]
-			if fileName == serverFile {
-				err := SendFile(conn, fileName, request)
+			serverFile = serverFile[12:]
+			if request == serverFile {
+				err := SendFile(conn, request, request)
 				if err != nil {
 					log.Printf("can't process the request: %v", err)
 				}

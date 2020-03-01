@@ -295,7 +295,14 @@ img {
 
 
 /*/////////////////////// FOOTER /////////////////////////////*/
+#dbclc {
+    padding-bottom: 100px;
+}
+
 #footer {
+    left:0;
+    bottom:0;
+    width:100%;
     color: #FC3DFA;
     box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.3);
     background-color: rgba(78, 0, 107, 0.5);
