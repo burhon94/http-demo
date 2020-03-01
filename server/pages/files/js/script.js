@@ -138,9 +138,11 @@ function Result() {
             c = parseFloat(a) / parseFloat(b);
             break;
         case 5:
-            c = Math.pow(parseFloat(a), parseFloat(b))
+            c = Math.pow(parseFloat(a), parseFloat(b));
+            break;
         case 6:
-            c = Math.sqrt(parseFloat(a))
+            c = Math.sqrt(parseFloat(a));
+            break;
     }
     e = true;
     ShowDisplay();

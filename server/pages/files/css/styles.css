@@ -1,5 +1,5 @@
 body {
-    background-image: url("../img/2.png"), url("../img/bg3-dots.png");
+    background-image: url("../img/bg3-dots.png");
     background-position: 50% 0;
     background-repeat: repeat, repeat;
 }
@@ -263,6 +263,7 @@ img {
 
 /*/////////////////////// CALCULATOR /////////////////////////////*/
 .calc {
+    margin: 24px auto 24px;
     font-family: "Segoe UI Light", monospace;
     color: white;
     text-align: center;
@@ -293,6 +294,14 @@ img {
     font-size: 50px;
 }
 
+.hClc {
+    align-items: center;
+}
+
+#tblClc {
+    align-items: center;
+    align-content: center;
+}
 
 /*/////////////////////// FOOTER /////////////////////////////*/
 #dbclc {
@@ -300,9 +309,9 @@ img {
 }
 
 #footer {
-    left:0;
-    bottom:0;
-    width:100%;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     color: #FC3DFA;
     box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.3);
     background-color: rgba(78, 0, 107, 0.5);
