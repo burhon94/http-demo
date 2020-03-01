@@ -75,6 +75,14 @@ func HandleConn(conn net.Conn) (err error) {
 			return err
 		}
 
+		if request == "/favicon.ico" {
+			err := SendFile(conn, "icon.png", request)
+			if err != nil {
+				log.Printf("can't process the request: %v", err)
+			}
+			return err
+		}
+
 		filesDir, err := FilesDir(ServerFilesPages)
 		if err != nil {
 			log.Printf("can't check server files: %s, error %v", ServerFilesPages, err)
